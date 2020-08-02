@@ -225,15 +225,9 @@ git update-index --assume-unchanged "/home/$name/LICENSE"
 # Most important command! Get rid of the beep!
 systembeepoff
 
-# Make zsh the default shell for the user.
-chsh -s /bin/zsh $name >/dev/null 2>&1
-sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
 
 # dbus UUID must be generated for Artix runit.
 dbus-uuidgen > /var/lib/dbus/machine-id
-
-# Block Brave autoupdates just in case. (I don't know if these even exist on Linux, but whatever.)
-grep -q "laptop-updates.brave.com" /etc/hosts || echo "0.0.0.0 laptop-updates.brave.com" >> /etc/hosts
 
 # Start/restart PulseAudio.
 killall pulseaudio; sudo -u "$name" pulseaudio --start
